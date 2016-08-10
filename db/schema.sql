@@ -1,6 +1,6 @@
-IF EXISTS trainers DROP TABLE trainers;
-IF EXISTS pokemon DROP TABLE pokemon;
-IF EXISTS record DROP TABLE record;
+DROP TABLE IF EXISTS trainers;
+DROP TABLE IF EXISTS pokemon;
+DROP TABLE IF EXISTS record;
 
 CREATE TABLE trainers(
   id SERIAL PRIMARY KEY,
@@ -11,14 +11,14 @@ CREATE TABLE trainers(
 CREATE TABLE pokemon(
   id SERIAL PRIMARY KEY,
   moves VARCHAR(255) NOT NULL,
-  trainer_id INTEGER REFERENCES trainer(id)
+  trainers_id INTEGER REFERENCES trainers(id)
 );
 
 CREATE TABLE record(
   id SERIAL PRIMARY KEY,
   wins INTEGER NOT NULL,
   losses INTEGER NOT NULL,
-  trainer_id INTEGER REFERENCES trainer(id)
+  trainers_id INTEGER REFERENCES trainers(id)
 );
 
 

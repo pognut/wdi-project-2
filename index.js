@@ -70,7 +70,9 @@ app.get('/signup', function(req, res){
 })
 
 app.post('/signup', function(req, res){
+  console.log('signup route hit')
   var data = req.body;
+  console.log(data)
   bcrypt.hash(data.password, 10, function(err, hashed_password){
     db.none('INSERT INTO trainers (email, password_digest) VALUES ($1, $2)', [data.email, hashed_password])
     .catch(function(){
@@ -80,6 +82,8 @@ app.post('/signup', function(req, res){
     });
   });
 });
+
+
 app.listen(3000, function(){
   console.log('Server active.')
 })
