@@ -32,6 +32,7 @@ app.get('/', function(req,res){
   if(req.session.user){
     var logged_in = true;
     email = req.session.user.email;
+    console.log('logged in')
   }
 
   var data = {
@@ -48,17 +49,19 @@ app.get('/logout', function(req,res){
 
 app.post('/login', function(req, res){
   var data = req.body;
-
-  db.one('SELECT * FROM trainer_db WHERE email = $1', [data.email])
+  console.log('login hit')
+  db.one('SELECT * FROM trainers WHERE email = $1', [data.email])
   .catch(function(){
     res.send('Authorization failed. Check your email/password.');
   }).then(function(user){
     bcrypt.compare(data.password, user.password_digest, function(err, match){
       if(match){
+        console.log(user)
         req.session.user = user;
         res.redirect('/');
       }
       else{
+        console.log('boo')
         res.send('Authorization failed. Check your email/password.')
       }
     });

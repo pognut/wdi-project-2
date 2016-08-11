@@ -1,4 +1,4 @@
-$('#signIn').on('submit', function(event){
+$('#signUp').on('submit', function(event){
   event.preventDefault();
   var email = $(this).children('#email').val();
   var password = $(this).children('#password').val();
@@ -10,7 +10,22 @@ $('#signIn').on('submit', function(event){
     'data':trainer,
     'success': function(data){
       console.log('post success')
-      window.location.replace("http://localhost:3000/")
+    }
+  })
+})
+
+$('#logIn').on('submit', function(event){
+  event.preventDefault();
+  var email = $(this).children('#logemail').val();
+  var password = $(this).children('#logpassword').val();
+  var trainer = {email:email, password:password};
+  console.log('script connected')
+  $.ajax({
+    'url':'/login',
+    'method':'POST',
+    'data':trainer,
+    'success': function(trainer){
+      console.log('post success')
     }
   })
 })
