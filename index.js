@@ -42,6 +42,10 @@ app.get('/', function(req,res){
   res.render('index', data);
 });
 
+app.get('/catch', function(req,res){
+  res.render('catch/index')
+})
+
 app.get('/logout', function(req,res){
   req.session.user = null;
   res.redirect('/');
@@ -82,6 +86,7 @@ app.post('/signup', function(req, res){
       res.send('error, user could not be created')
     }).then(function(){
       res.send('user created')
+      res.redirect('/')
     });
   });
 });

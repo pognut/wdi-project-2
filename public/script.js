@@ -1,3 +1,5 @@
+//for everything but catching game
+
 $('#signUp').on('submit', function(event){
   event.preventDefault();
   var email = $(this).children('#email').val();
@@ -29,3 +31,4 @@ $('#logIn').on('submit', function(event){
     }
   })
 })
+

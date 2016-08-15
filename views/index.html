@@ -1,6 +1,3 @@
-Test successful!
-<a href = "/signup">Sign up/Log in</a>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,11 +8,13 @@ Test successful!
 </head>
 <body>
 {{#logged_in}}
-Logged in?
+Welcome {{email}}
+<a href = '/catch'>Catch some pokemans?</a>
 <a href = '/logout'> log out?</a>
 {{/logged_in}}
+
 {{^logged_in}}
-Not logged in?
+<a href = "/signup">Sign up/Log in</a>
 {{/logged_in}}
 </body>
 <script src = '/jquery.js'></script>
