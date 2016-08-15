@@ -22,7 +22,18 @@ var pokemonSelector = function(diff){
   }
 }
 
-
+var billsPC = function(name, moves){
+  var pokemon = {name: name, moves: moves}
+  $.ajax({
+    "url": "/captured",
+    "method": "POST",
+    "data": pokemon,
+    "success": function(pokemon){
+      console.log('poke post success')
+      window.location = pokemon.redirect
+    }
+  })
+}
 
 var quizMaster = function(data, questionNumber, corrects){
   $('#answerSubmit').off()
@@ -68,6 +79,7 @@ var quizMaster = function(data, questionNumber, corrects){
   //end success
   else if(right >=4){
     console.log('yay')
+    billsPC(data.name, data.moves[0].move.name)
     //database post with poke-info goes here.
 
   }

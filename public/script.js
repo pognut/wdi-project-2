@@ -10,7 +10,7 @@ $('#signUp').on('submit', function(event){
     'url':'/signup',
     'method':'POST',
     'data':trainer,
-    'success': function(data){
+    'success': function(trainer){
       console.log('post success')
       window.location = trainer.redirect
     }

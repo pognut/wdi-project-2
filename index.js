@@ -91,6 +91,17 @@ app.post('/signup', function(req, res){
   });
 });
 
+app.post('/captured', function(req, res){
+  console.log('capture route hit')
+  var pokeData = req.body;
+  var id = req.session.user.id;
+  db.none('INSERT INTO pokemon (moves, trainers_id) VALUES ($1, $2)', [pokeData.moves, id])
+  .catch(function(){
+    res.send('error')
+  }).then(function(){
+    res.send({redirect: '/'})
+  })
+})
 
 app.listen(3000, function(){
   console.log('Server active.')
