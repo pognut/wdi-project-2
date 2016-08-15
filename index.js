@@ -33,18 +33,24 @@ app.get('/', function(req,res){
     var logged_in = true;
     email = req.session.user.email;
     console.log('logged in')
-    var frontPageInfo = db.any('SELECT * FROM pokemon WHERE trainers_id = ' + req.session.user.id)
+    db.any('SELECT * FROM pokemon WHERE trainers_id = ' + req.session.user.id)
     .then(function(data){
       console.log(data)
-      })
-    }
+        var pokes = {
+          "logged_in":logged_in,
+          "email":email,
+          "info":data
+          }
+        res.render('index', pokes);
+            })
+        }
+  else{
   var data = {
     "logged_in":logged_in,
-    "email":email,
-    "info":frontPageInfo
-
+    "email":email
   }
   res.render('index', data);
+}
 });
 
 app.get('/catch', function(req,res){

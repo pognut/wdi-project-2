@@ -11,8 +11,12 @@
 Welcome {{email}}
 <a href = '/catch'>Catch some pokemans?</a>
 <a href = '/logout'> log out?</a>
-{{info}}
+{{#info}}
 {{name}}
+{{dex}}
+<img src = {{sprite}}>
+{{/info}}
+
 <!-- grab the id num when you grab the captured pokemon for the table, makes it easier to delete/manipulate. -->
 {{/logged_in}}
 

@@ -11,7 +11,7 @@ Users can power up and evolve their pokemon.
 
 LEFT TO DO:
 
-Finish pokemon database storage. (proper data formatting, determine what will show on front page first)
+Finish pokemon database storage. (proper data formatting, determine what will show on front page first) Almost done.
 Create front page pokemon display.
 Add ability to release pokemon from front page pokemon display.
 Add login check to /catch
