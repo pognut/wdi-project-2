@@ -14,8 +14,24 @@
 <button>Medium</button>
 
 <button>Hard</button>
+<br>
+<div id = quizWindow>
+  <h3 id = questionWindow></h3>
+  <form id = answerWindow>
+    <input id = answerInput>
+    <button id="answerSubmit" type="submit">Submit</button>
+  </form>
+  <h5 id = questionTracker>1/5</h5>
+</div>
 
 </body>
 <script src = '/jquery.js'></script>
 <script src = '/catcher.js'></script>
 </html>
+
+<!--
+  $('body').append('<div id = quizWindow>');
+  $('#quizWindow').append('<h3 id = questionWindow>');
+  $('#quizWindow').append('<form id = answerWindow>');
+  $('#answerWindow').append('<input id = answerInput>')
+  $('#answerWindow').append('<button id="answerSubmit" type="submit">Submit</button>') -->

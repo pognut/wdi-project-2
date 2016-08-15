@@ -24,30 +24,72 @@ var pokemonSelector = function(diff){
 
 
 
-var quizMaster = function(data){
-  $('body').append('<div id = quizWindow>');
-  $('#quizWindow').append('<h3 id = questionWindow>');
-  $('#quizWindow').append('<form id = answerWindow>');
-  $('#answerWindow').append('<input id = answerInput>')
-  $('#answerWindow').append('<button id="answerSubmit" type="submit">Submit</button>')
-  var questObj = questionSelector(1);
-  var questStr = Object.keys(questObj);
-  var questAns = questObj[questStr];
-  $('#questionWindow').text(questStr);
+var quizMaster = function(data, questionNumber, corrects){
+  $('#answerSubmit').off()
+  var i = questionNumber;
+  var right = corrects;
   $('#answerSubmit').on('click', function(e){
     e.preventDefault();
-    if($('#answerInput').val()==data[questAns]){
-      console.log('right')
-    }
-    else{
-      console.log('wrong')
-    }
   })
-  //bring up quiz window
-  //fill in questions
+  if(i <= 5){
+    var questObj = questionSelector(1);
+    var questStr = Object.keys(questObj);
+    var questAns = questObj[questStr];
+    $('#questionWindow').text(questStr);
+    $('#answerSubmit').on('click', function(e){
+      if($('#answerInput').val()==data[questAns]){
+        console.log('right')
+        i++;
+        if(i==6){
+          $('#questionTracker').text('5/5')
+        }
+        else{
+          $('#questionTracker').text(i+'/5')
+        }
+        right++;
+        quizMaster(data, i, right);
+      }
+      else{
+        console.log('wrong')
+        i++;
+        if(i==6){
+          $('#questionTracker').text('5/5')
+        }
+        else{
+          $('#questionTracker').text(i+'/5')
+        }
+        quizMaster(data, i, right);
+        }
+    })
+  }
+  else if(right >=4){
+    console.log('yay')
+  }
+  else{
+    console.log('blah')
+  }
+}
+  // $('#answerSubmit').on('click', function(e){
+  //   e.preventDefault();
+  //   if($('#answerInput').val()==data[questAns]){
+  //     console.log('right')
+  //     i++;
+  //     $('#questionTracker').text(i+'/5')
+  //     right++;
+  //     quizMaster(data, i, right);
+  //   }
+  //   else{
+  //     console.log('wrong')
+  //     i++;
+  //     $('#questionTracker').text(i+'/5')
+  //     quizMaster(data, i, right);
+  //     }
+  // })
+
   //record answers
   //display question difficulty, questions to go, number of wrongs etc.
-}
+  //on win, put pokemon into database
+
 
 var pokeInfo = function(diff){
   var pokeName = pokemonSelector(diff);
@@ -58,7 +100,7 @@ var pokeInfo = function(diff){
     'success': function(data){
       console.log('get success')
       console.log(data)
-      quizMaster(data);
+      quizMaster(data, 1, 0);
     }
   })
 }
