@@ -12,6 +12,7 @@ $('#signUp').on('submit', function(event){
     'data':trainer,
     'success': function(trainer){
       console.log('post success')
+      //gotta fix this
       window.location = trainer.redirect
     }
   })

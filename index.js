@@ -33,11 +33,16 @@ app.get('/', function(req,res){
     var logged_in = true;
     email = req.session.user.email;
     console.log('logged in')
-  }
-
+    var frontPageInfo = db.any('SELECT * FROM pokemon WHERE trainers_id = ' + req.session.user.id)
+    .then(function(data){
+      console.log(data)
+      })
+    }
   var data = {
     "logged_in":logged_in,
-    "email":email
+    "email":email,
+    "info":frontPageInfo
+
   }
   res.render('index', data);
 });
@@ -95,7 +100,7 @@ app.post('/captured', function(req, res){
   console.log('capture route hit')
   var pokeData = req.body;
   var id = req.session.user.id;
-  db.none('INSERT INTO pokemon (moves, trainers_id) VALUES ($1, $2)', [pokeData.moves, id])
+  db.none('INSERT INTO pokemon (name, dex, sprite, trainers_id) VALUES ($1, $2, $3, $4)', [pokeData.name, pokeData.dex, pokeData.sprite, id])
   .catch(function(){
     res.send('error')
   }).then(function(){

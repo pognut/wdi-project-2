@@ -21,9 +21,16 @@ var pokemonSelector = function(diff){
     return easyMons[index]
   }
 }
+//Stuff to put into DB
+// * name
+// * pokedex number
+// * image url
+// * type
 
-var billsPC = function(name, moves){
-  var pokemon = {name: name, moves: moves}
+
+var billsPC = function(name, num, img, type){
+  console.log(type)
+  var pokemon = {name:name, dex: num, sprite:img}
   $.ajax({
     "url": "/captured",
     "method": "POST",
@@ -79,7 +86,7 @@ var quizMaster = function(data, questionNumber, corrects){
   //end success
   else if(right >=4){
     console.log('yay')
-    billsPC(data.name, data.moves[0].move.name)
+    billsPC(data.name, data.id, data.sprites.front_default, data.types)
     //database post with poke-info goes here.
 
   }
