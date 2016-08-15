@@ -62,7 +62,7 @@ app.post('/login', function(req, res){
       if(match){
         console.log(user)
         req.session.user = user;
-        res.redirect('/');
+        res.send({redirect: '/'})
       }
       else{
         console.log('boo')
@@ -86,7 +86,7 @@ app.post('/signup', function(req, res){
       res.send('error, user could not be created')
     }).then(function(){
       res.send('user created')
-      res.redirect('/')
+      res.send({redirect: '/'})
     });
   });
 });

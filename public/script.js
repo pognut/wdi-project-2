@@ -12,6 +12,7 @@ $('#signUp').on('submit', function(event){
     'data':trainer,
     'success': function(data){
       console.log('post success')
+      window.location = trainer.redirect
     }
   })
 })
@@ -28,6 +29,7 @@ $('#logIn').on('submit', function(event){
     'data':trainer,
     'success': function(trainer){
       console.log('post success')
+      window.location = trainer.redirect
     }
   })
 })

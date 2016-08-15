@@ -1,6 +1,6 @@
 //for catching game
 // [{"ques" + api var + "tion": answer path in object}]
-var easyQuestions = [{"What is this Pokemon's Pokedex number?":"id"}, {"What is this Pokemon's weight?":"weight"}]
+var easyQuestions = [{"What is this Pokemon's Pokedex number?":"id"}, {"What is this Pokemon's weight?":"weight"}, {"Who's that Pokemon?":"name"}]
 
 var easyMons = ["Bulbasaur", "Charmander"]
 
@@ -28,16 +28,19 @@ var quizMaster = function(data, questionNumber, corrects){
   $('#answerSubmit').off()
   var i = questionNumber;
   var right = corrects;
+  $('#sprite').attr('src', data.sprites.front_default);
   $('#answerSubmit').on('click', function(e){
     e.preventDefault();
   })
+  //question loop
   if(i <= 5){
+    $('#questionTracker').text(i+'/5')
     var questObj = questionSelector(1);
     var questStr = Object.keys(questObj);
     var questAns = questObj[questStr];
     $('#questionWindow').text(questStr);
     $('#answerSubmit').on('click', function(e){
-      if($('#answerInput').val()==data[questAns]){
+      if($('#answerInput').val().toLowerCase()==data[questAns]){
         console.log('right')
         i++;
         if(i==6){
@@ -62,33 +65,17 @@ var quizMaster = function(data, questionNumber, corrects){
         }
     })
   }
+  //end success
   else if(right >=4){
     console.log('yay')
+    //database post with poke-info goes here.
+
   }
+  //end failure
   else{
-    console.log('blah')
+    alert('The Pokemon got away! Try again.')
   }
 }
-  // $('#answerSubmit').on('click', function(e){
-  //   e.preventDefault();
-  //   if($('#answerInput').val()==data[questAns]){
-  //     console.log('right')
-  //     i++;
-  //     $('#questionTracker').text(i+'/5')
-  //     right++;
-  //     quizMaster(data, i, right);
-  //   }
-  //   else{
-  //     console.log('wrong')
-  //     i++;
-  //     $('#questionTracker').text(i+'/5')
-  //     quizMaster(data, i, right);
-  //     }
-  // })
-
-  //record answers
-  //display question difficulty, questions to go, number of wrongs etc.
-  //on win, put pokemon into database
 
 
 var pokeInfo = function(diff){
@@ -107,5 +94,4 @@ var pokeInfo = function(diff){
 
 $('#easy').on('click', function(){
   pokeInfo(1);
-  // quizMaster();
 })
