@@ -102,10 +102,10 @@ app.post('/signup', function(req, res){
   bcrypt.hash(data.password, 10, function(err, hashed_password){
     db.none('INSERT INTO trainers (email, password_digest) VALUES ($1, $2)', [data.email, hashed_password])
     .catch(function(){
-      alert('Login failed, please try again.')
-      res.redirect('/')
+      console.log('Login failed, please try again.');
+      res.send({redirect: '/'});
     }).then(function(){
-      res.send({redirect: '/'})
+      res.send({redirect: '/'});
     });
   });
 });
