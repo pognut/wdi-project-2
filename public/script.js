@@ -13,7 +13,7 @@ $('#signUp').on('submit', function(event){
     'success': function(trainer){
       console.log('post success')
       //gotta fix this
-      window.location = trainer.redirect
+      window.location = '/'; //trainer.redirect
     }
   })
 })
@@ -30,7 +30,8 @@ $('#logIn').on('submit', function(event){
     'data':trainer,
     'success': function(trainer){
       console.log('post success')
-      window.location = trainer.redirect
+      window.location = '/';
+      //window.location = trainer.redirect
     }
   })
 })
