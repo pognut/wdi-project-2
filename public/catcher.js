@@ -45,7 +45,7 @@ var quizMaster = function(data, questionNumber, corrects){
   })
   //question loop
   if(i <= 5){
-    $('#questionTracker').text(i+'/5')
+    $('#questionTracker').text('Question: '+i+'/5')
     var questObj = questionSelector(1);
     var questStr = Object.keys(questObj);
     var questAns = questObj[questStr];
@@ -55,10 +55,10 @@ var quizMaster = function(data, questionNumber, corrects){
         console.log('right')
         i++;
         if(i==6){
-          $('#questionTracker').text('5/5')
+          $('#questionTracker').text('Question: 5/5')
         }
         else{
-          $('#questionTracker').text(i+'/5')
+          $('#questionTracker').text('Question:'+i+'/5')
         }
         right++;
         quizMaster(data, i, right);
@@ -67,10 +67,10 @@ var quizMaster = function(data, questionNumber, corrects){
         console.log('wrong')
         i++;
         if(i==6){
-          $('#questionTracker').text('5/5')
+          $('#questionTracker').text('Question: 5/5')
         }
         else{
-          $('#questionTracker').text(i+'/5')
+          $('#questionTracker').text('Question: '+i+'/5')
         }
         quizMaster(data, i, right);
         }

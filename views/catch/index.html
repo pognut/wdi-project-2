@@ -5,26 +5,29 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title></title>
-  <link rel="stylesheet" href="">
+  <link rel="stylesheet" href="/bootstrap.min.css">
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-<button id = 'easy'>Easy</button>
-
-
-<button>Medium</button>
-
-<button>Hard</button>
-<br>
-<img src = "" id = "sprite">
-<div id = quizWindow>
-  <h3 id = questionWindow></h3>
-  <form id = answerWindow>
-    <input id = answerInput>
-    <button id="answerSubmit" type="submit">Submit</button>
-  </form>
-  <h5 id = questionTracker>1/5</h5>
-</div>
-
+  <div class = container>
+    <div class = 'question-buttons'>
+      <button id = 'easy'>Easy</button>
+      <button>Medium</button>
+      <button>Hard</button>
+    </div>
+    <br>
+    <div id = 'sprite-box'>
+      <img src = "" id = "sprite">
+    </div>
+    <div id = quizWindow>
+      <h3 id = questionWindow></h3>
+      <form id = answerWindow>
+        <input id = answerInput>
+        <button id="answerSubmit" type="submit">Submit</button>
+      </form>
+      <h5 id = questionTracker>Question: 1/5</h5>
+    </div>
+  </div>
 </body>
 <script src = '/jquery.js'></script>
 <script src = '/catcher.js'></script>
