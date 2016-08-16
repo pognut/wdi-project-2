@@ -5,6 +5,11 @@ const mustacheExpress = require('mustache-express');
 const bodyParser = require("body-parser");
 const session = require('express-session');
 
+try {
+  require('./env');
+} catch(e){
+}
+
 /* BCrypt stuff here */
 var bcrypt = require('bcrypt');
 var salt = bcrypt.genSalt(1)
@@ -23,7 +28,6 @@ app.use(session({
   cookie: { secure: false }
 }))
 
-// var db = pgp('postgres://nicholasmichel@localhost:5432/trainer_db');
 var db = pgp(process.env.DATABASE_URL);
 
 app.get('/', function(req,res){
