@@ -114,6 +114,7 @@
 .logsignname {
   display: block;
   text-align: center;
+  font-size: 18px;
 }
 
 #log-sign-back {
@@ -124,7 +125,7 @@
 
 p#welcome {
   font-size: 24px;
-  color: blue;
+  color: black;
   display: inline-block;
   position: absolute;
   left: 5%;
@@ -164,4 +165,11 @@ p.info {
 
 #dexnum {
   left: 40%;
+}
+
+#instructions {
+  max-width: 600px;
+  color: black;
+  text-align: center;
+  margin: 40px auto 0 auto;
 }

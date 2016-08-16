@@ -11,7 +11,7 @@ Users can power up and evolve their pokemon.
 
 LEFT TO DO:
 
-Finish prettifying pages.
+Finish prettifying pages. DONE
 Add descriptions/instructions/better labeling.
 More questions/pokemans
 no repeat questions
