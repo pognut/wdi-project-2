@@ -13,4 +13,7 @@ LEFT TO DO:
 
 Finish prettifying pages.
 Add descriptions/instructions/better labeling.
-More questions.
+More questions/pokemans
+no repeat questions
+Add a catch animation
+

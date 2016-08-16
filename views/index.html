@@ -11,8 +11,10 @@
   <!-- Title -->
   <div class = container>
     {{#logged_in}}
-    Welcome {{email}}
-    <a href = '/logout' id = 'logout'> log out?</a>
+    <div class = heads>
+      <p id = 'welcome'>Welcome {{email}}</p>
+      <a href = '/logout' id = 'logout'> log out?</a>
+    </div>
     <br>
     <h1 class = 'front-title'>Pokemon Trivia Catch!</h1>
     <a href = '/catch' id = 'catch-link'>Catch some pokemans?</a>
@@ -34,16 +36,16 @@
       {{#info}}
       <div class = "row">
         <div class = "col-md-3 cell">
-          {{name}}
+          <p class = info>{{name}}</p>
         </div>
         <div class = "col-md-3 cell">
-          {{dex}}
+          <p class = info id = dexnum>{{dex}}</p>
         </div>
         <div class = "col-md-3 cell">
           <img src = {{sprite}} class = 'sprite'>
         </div>
         <div class = "col-md-3 cell">
-          {{types}}
+          <p class = info>{{types}}</p>
         </div>
       </div>
       {{/info}}
