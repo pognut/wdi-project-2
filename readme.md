@@ -11,12 +11,6 @@ Users can power up and evolve their pokemon.
 
 LEFT TO DO:
 
-Finish pokemon database storage. (proper data formatting, determine what will show on front page first) DONE
-Create front page pokemon display. DONE
-Fix undefined gets (error messages and the like) DONE?
-Add login check to all pages DONE
-Add more questions/pokemon. 2
-Prettify pages 3
-Add sound when clicked?
-Add ability to release pokemon from front page pokemon display.
-Tighten up catcher.js
+Finish prettifying pages.
+Add descriptions/instructions/better labeling.
+More questions.

@@ -42,7 +42,7 @@
 
 .question-buttons {
   margin: 0 auto;
-  width: 200px;
+  width: 175px;
 }
 
 #sprite-box {
@@ -75,6 +75,43 @@
 
 #questionTracker {
   position: absolute;
-  bottom: 0%;
+  bottom: -10%;
   left: 15%;
+}
+
+#correctTracker{
+  position: absolute;
+  bottom: 10%;
+  left: 15%;
+
+}
+
+#signlog {
+  position: absolute;
+  left: 45%;
+}
+
+#catch-back {
+  position: absolute;
+  left: 85%;
+}
+
+#signUp {
+  margin: 10px auto;
+  max-width: 400px;
+}
+
+#logIn {
+  margin: 10px auto;
+  max-width: 400px;
+}
+
+.logsignname {
+  display: block;
+  text-align: center;
+}
+
+#log-sign-back {
+  position: absolute;
+  left: 85%;
 }

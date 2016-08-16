@@ -17,6 +17,20 @@
     <h1 class = 'front-title'>Pokemon Trivia Catch!</h1>
     <a href = '/catch' id = 'catch-link'>Catch some pokemans?</a>
     <div id = 'display'>
+      <div class = 'row' id = 'column titles'>
+        <div class = col-md-3>
+          Name
+        </div>
+        <div class = col-md-3>
+          Pokedex ID
+        </div>
+        <div class = col-md-3>
+          Image
+        </div>
+        <div class = col-md-3>
+          Type(s)
+        </div>
+      </div>
       {{#info}}
       <div class = "row">
         <div class = "col-md-3 cell">
@@ -40,7 +54,7 @@
 
     {{^logged_in}}
     <h1 class = 'front-title'>Pokemon Trivia Catch!</h1>
-    <a href = "/signup">Sign up/Log in</a>
+    <a href = "/signup" id = 'signlog'>Sign up/Log in</a>
     {{/logged_in}}
   </div>
 </body>

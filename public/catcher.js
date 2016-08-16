@@ -62,6 +62,7 @@ var quizMaster = function(data, questionNumber, corrects){
           $('#questionTracker').text('Question:'+i+'/5')
         }
         right++;
+        $('#correctTracker').text('Correct: '+right);
         quizMaster(data, i, right);
       }
       else{
