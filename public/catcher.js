@@ -30,7 +30,8 @@ var billsPC = function(name, num, img, type){
     "data": pokemon,
     "success": function(pokemon){
       console.log('poke post success')
-      window.location = pokemon.redirect
+      window.location = '/';
+      // window.location = pokemon.redirect
     }
   })
 }

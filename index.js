@@ -82,11 +82,11 @@ app.post('/login', function(req, res){
     bcrypt.compare(data.password, user.password_digest, function(err, match){
       if(match){
         req.session.user = user;
-        res.send({redirect: '/'})
+        // res.send({redirect: '/'})
       }
       else{
         alert('Authorization failed. Check your email/password.')
-        res.redirect('/login')
+        // res.redirect('/login')
       }
     });
   });
@@ -103,9 +103,9 @@ app.post('/signup', function(req, res){
     db.none('INSERT INTO trainers (email, password_digest) VALUES ($1, $2)', [data.email, hashed_password])
     .catch(function(){
       console.log('Login failed, please try again.');
-      res.send({redirect: '/'});
+      // res.send({redirect: '/'});
     }).then(function(){
-      res.send({redirect: '/'});
+      // res.send({redirect: '/'});
     });
   });
 });
@@ -119,7 +119,7 @@ app.post('/captured', function(req, res){
     alert('Error, please try again.')
     res.redirect('/catch')
   }).then(function(){
-    res.send({redirect: '/'})
+    // res.send({redirect: '/'})
   })
 })
 
