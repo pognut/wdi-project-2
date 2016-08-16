@@ -23,7 +23,8 @@ app.use(session({
   cookie: { secure: false }
 }))
 
-var db = pgp('postgres://nicholasmichel@localhost:5432/trainer_db');
+// var db = pgp('postgres://nicholasmichel@localhost:5432/trainer_db');
+var db = pgp(process.env.DATABASE_URL);
 
 app.get('/', function(req,res){
   var logged_in,
@@ -118,6 +119,42 @@ app.post('/captured', function(req, res){
   })
 })
 
-app.listen(3000, function(){
-  console.log('Server active.')
-})
+// app.listen(3000, function(){
+//   console.log('Server active.')
+// })
+
+app.set('port', (process.env.PORT || 5000));
+
+app.listen(app.get('port'), function(){
+  console.log('Node app is running on port', app.get('port'));
+});
+
+// const express = require('express');
+// const app = express();
+// const pgp = require('pg-promise')();
+// const mustacheExpress = require('mustache-express');
+
+
+// app.engine('html', mustacheExpress());
+// app.set('view engine', 'html');
+// app.set('views', __dirname + '/views');
+// app.use("/", express.static(__dirname + '/public'));
+
+
+// var db = pgp(process.env.DATABASE_URL);
+
+// app.get('/', function(req, res) {
+//     db.any('SELECT * FROM messages').then(function(data) {
+//         var template_data = {
+//             messages: data
+//         }
+//         res.render('index', template_data);
+//     });
+// });
+
+
+// app.set('port', (process.env.PORT || 5000));
+
+// app.listen(app.get('port'), function(){
+//   console.log('Node app is running on port', app.get('port'));
+// });
