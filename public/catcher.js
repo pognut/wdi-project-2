@@ -21,16 +21,9 @@ var pokemonSelector = function(diff){
     return easyMons[index]
   }
 }
-//Stuff to put into DB
-// * name
-// * pokedex number
-// * image url
-// * type
-
 
 var billsPC = function(name, num, img, type){
-  console.log(type)
-  var pokemon = {name:name, dex: num, sprite:img}
+  var pokemon = {name:name, dex: num, sprite:img, types:type}
   $.ajax({
     "url": "/captured",
     "method": "POST",
@@ -86,7 +79,13 @@ var quizMaster = function(data, questionNumber, corrects){
   //end success
   else if(right >=4){
     console.log('yay')
-    billsPC(data.name, data.id, data.sprites.front_default, data.types)
+    if(data.types[1] == undefined){
+    var typers = data.types[0].type.name
+    }
+    else{
+    var typers = data.types[0].type.name + ", " + data.types[1].type.name;
+    }
+    billsPC(data.name, data.id, data.sprites.front_default, typers)
     //database post with poke-info goes here.
 
   }

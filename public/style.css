@@ -1,0 +1,41 @@
+#display {
+  width: 60%;
+  height: 75%;
+  margin: 50px auto;
+
+}
+
+.front-title {
+  margin: 0 auto;
+  max-width: 400px;
+}
+
+#catch-link {
+  margin: 0 auto;
+  max-width: 400px;
+  position: absolute;
+  left: 45%;
+}
+
+#logout {
+  position: absolute;
+  left: 85%;
+}
+
+.cell {
+  border: 1px solid black;
+  height: 50px;
+  position: relative;
+}
+
+.sprite {
+  position: absolute;
+  top: -50%;
+  left: 30%;
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}

@@ -13,6 +13,7 @@ CREATE TABLE pokemon(
   name VARCHAR(50) NOT NULL,
   dex INTEGER NOT NULL,
   sprite VARCHAR(255) NOT NULL,
+  types VARCHAR(50) NOT NULL,
   trainers_id INTEGER REFERENCES trainers(id)
 );
 

@@ -4,25 +4,45 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title></title>
-  <link rel="stylesheet" href="">
+  <link rel="stylesheet" href="/bootstrap.min.css">
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-{{#logged_in}}
-Welcome {{email}}
-<a href = '/catch'>Catch some pokemans?</a>
-<a href = '/logout'> log out?</a>
-{{#info}}
-{{name}}
-{{dex}}
-<img src = {{sprite}}>
-{{/info}}
+  <!-- Title -->
+  <div class = container>
+    {{#logged_in}}
+    Welcome {{email}}
+    <a href = '/logout' id = 'logout'> log out?</a>
+    <br>
+    <h1 class = 'front-title'>Pokemon Trivia Catch!</h1>
+    <a href = '/catch' id = 'catch-link'>Catch some pokemans?</a>
+    <div id = 'display'>
+      {{#info}}
+      <div class = "row">
+        <div class = "col-md-3 cell">
+          {{name}}
+        </div>
+        <div class = "col-md-3 cell">
+          {{dex}}
+        </div>
+        <div class = "col-md-3 cell">
+          <img src = {{sprite}} class = 'sprite'>
+        </div>
+        <div class = "col-md-3 cell">
+          {{types}}
+        </div>
+      </div>
+      {{/info}}
+    </div>
 
-<!-- grab the id num when you grab the captured pokemon for the table, makes it easier to delete/manipulate. -->
-{{/logged_in}}
+    <!-- grab the id num when you grab the captured pokemon for the table, makes it easier to delete/manipulate. -->
+    {{/logged_in}}
 
-{{^logged_in}}
-<a href = "/signup">Sign up/Log in</a>
-{{/logged_in}}
+    {{^logged_in}}
+    <h1 class = 'front-title'>Pokemon Trivia Catch!</h1>
+    <a href = "/signup">Sign up/Log in</a>
+    {{/logged_in}}
+  </div>
 </body>
 <script src = '/jquery.js'></script>
 <script src = '/script.js'></script>

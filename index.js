@@ -35,7 +35,6 @@ app.get('/', function(req,res){
     console.log('logged in')
     db.any('SELECT * FROM pokemon WHERE trainers_id = ' + req.session.user.id)
     .then(function(data){
-      console.log(data)
         var pokes = {
           "logged_in":logged_in,
           "email":email,
@@ -54,7 +53,12 @@ app.get('/', function(req,res){
 });
 
 app.get('/catch', function(req,res){
-  res.render('catch/index')
+  if(req.session.user){
+    res.render('catch/index')
+  }
+  else{
+    res.redirect('/')
+  }
 })
 
 app.get('/logout', function(req,res){
@@ -67,17 +71,17 @@ app.post('/login', function(req, res){
   console.log('login hit')
   db.one('SELECT * FROM trainers WHERE email = $1', [data.email])
   .catch(function(){
-    res.send('Authorization failed. Check your email/password.');
+    alert('Authorization failed. Check your email/password.');
+    res.redirect('/login')
   }).then(function(user){
     bcrypt.compare(data.password, user.password_digest, function(err, match){
       if(match){
-        console.log(user)
         req.session.user = user;
         res.send({redirect: '/'})
       }
       else{
-        console.log('boo')
-        res.send('Authorization failed. Check your email/password.')
+        alert('Authorization failed. Check your email/password.')
+        res.redirect('/login')
       }
     });
   });
@@ -90,13 +94,12 @@ app.get('/signup', function(req, res){
 app.post('/signup', function(req, res){
   console.log('signup route hit')
   var data = req.body;
-  console.log(data)
   bcrypt.hash(data.password, 10, function(err, hashed_password){
     db.none('INSERT INTO trainers (email, password_digest) VALUES ($1, $2)', [data.email, hashed_password])
     .catch(function(){
-      res.send('error, user could not be created')
+      alert('Login failed, please try again.')
+      res.redirect('/')
     }).then(function(){
-      res.send('user created')
       res.send({redirect: '/'})
     });
   });
@@ -106,9 +109,10 @@ app.post('/captured', function(req, res){
   console.log('capture route hit')
   var pokeData = req.body;
   var id = req.session.user.id;
-  db.none('INSERT INTO pokemon (name, dex, sprite, trainers_id) VALUES ($1, $2, $3, $4)', [pokeData.name, pokeData.dex, pokeData.sprite, id])
+  db.none('INSERT INTO pokemon (name, dex, sprite, types, trainers_id) VALUES ($1, $2, $3, $4, $5)', [pokeData.name, pokeData.dex, pokeData.sprite, pokeData.types, id])
   .catch(function(){
-    res.send('error')
+    alert('Error, please try again.')
+    res.redirect('/catch')
   }).then(function(){
     res.send({redirect: '/'})
   })
