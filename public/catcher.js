@@ -101,7 +101,7 @@ var pokeInfo = function(diff){
   var pokeName = pokemonSelector(diff);
   var apiName = pokeName.toLowerCase();
   $.ajax({
-    'url':'http://pokeapi.co/api/v2/pokemon/' + apiName,
+    'url':'https://pokeapi.co/api/v2/pokemon/' + apiName,
     'method':'GET',
     'success': function(data){
       console.log('get success')
