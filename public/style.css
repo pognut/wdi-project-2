@@ -26,13 +26,13 @@
 
 .cell {
   border: 1px solid black;
-  height: 50px;
+  height: 75px;
   position: relative;
 }
 
 .sprite {
   position: absolute;
-  top: -50%;
+  top: -20%;
   left: 30%;
 }
 

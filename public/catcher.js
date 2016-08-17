@@ -1,5 +1,5 @@
 //for catching game
-var easyQuestions = [{"What is this Pokemon's Pokedex number?":"data.id"}, {"What is this Pokemon's weight?":"data.weight"}, {"Who's that Pokemon?":"data.name"},{"What's this Pokemon's height?":"data.height"},{"What is this Pokemon's base attack?":'data.stats[4].base_stat'},{"What is this Pokemon's base defense?":"data.stats[3].base_stat"},{"What is this Pokemon's base hp?":"data.stats[5].base_stat'"},{"What is this Pokemon's base speed?":"data.stats[0].base_stat"},{"What is this Pokemon's base special attack?":"data.stats[2].base_stat"},{"What is this Pokemon's base special defense?":"data.stats[1].base_stat"}, {"What game did this Pokemon first appear in?":"data.game_indices[game_indices.length - 1].version.name"}, {"Can this pokemon learn ":"?"}]
+var easyQuestions = [{"What is this Pokemon's Pokedex number?":"id"}, {"What is this Pokemon's weight?":"weight"}, {"Who's that Pokemon?":"name"},{"What's this Pokemon's height?":"height"},{"What is this Pokemon's base speed?":'stats[4].base_stat'},{"What is this Pokemon's base special defense?":"stats[3]['base_stat']"},{"What is this Pokemon's base special attack?":"stats[5]['base_stat'"},{"What is this Pokemon's base defense?":"stats[0]['base_stat'"},{"What is this Pokemon's base attack?":"stats[2]['base_stat']"},{"What is this Pokemon's base hp?":"stats[1]['base_stat'"}, {"What game did this Pokemon first appear in?":"'game_indices'[game_indices.length - 1]['version']['name']"}, {"Can this pokemon learn ":"?"}]
 //Can this pokemon learn x
 //What is this pokemon's base x
 //height
@@ -15,7 +15,8 @@ var allMoves = ["pound","karate-chop","double-slap","comet-punch","mega-punch","
 var questionSelector = function(diff){
   if(diff ===1){
     var index = Math.floor(Math.random() * (easyQuestions.length));
-    return easyQuestions[index]
+    debugger;
+    return [easyQuestions[index],index]
   }
 }
 
@@ -47,12 +48,53 @@ var billsPC = function(name, num, img, type){
   })
 }
 
-var answerExtractor = function(data){
-  var moves = [];
-  data.moves.forEach(function(e){
-    moves.push(e.move.name);
-  })
-  return moves;
+var answerExtractor = function(data, obj, ind, move){
+  debugger;
+  switch(ind){
+    case 0:
+      var answer = data[obj]
+      return answer;
+      break;
+    case 1:
+      var answer = data[obj]
+      return answer;
+      break;
+    case 2:
+      var answer = data[obj]
+      return answer;
+      break;
+    case 3:
+      var answer = data[obj]
+      return answer;
+      break;
+    case 4:
+    case 5:
+    case 6:
+    case 7:
+    case 8:
+    case 9:
+    default:
+      var answer = data.stats[ind-4].base_stat
+      return answer;
+      break;
+    case 10:
+      var answer = data.game_indices[data.game_indices.length - 1].version.name
+      return answer;
+      break;
+    case 11:
+      var moves = [];
+      data.moves.forEach(function(e){
+        moves.push(e.move.name);
+          })
+      if(moves.includes(move)){
+        return "Yes"
+      }
+      else{
+        return "No"
+      }
+      break;
+  }
+
 }
 
 var quizMaster = function(data, questionNumber, corrects){
@@ -67,21 +109,17 @@ var quizMaster = function(data, questionNumber, corrects){
   //question loop
   if(i <= 5){
     $('#questionTracker').text('Question: '+i+'/5')
-    var questObj = questionSelector(1);
-    // if(questObj === {"Can this pokemon learn ":"?"}){
-    //   debugger;
-    //   var move = moveSelector()
-    //   questObj = {"Can this pokemon learn ":"?"}
-    //   var questStr = Object.keys(questObj)+move;
-    //   if(answerExtractor(data).contains(move)){
-    //     questAns = "Yes"
-    //     }
-    //   else{
-    //     questAns = "No"
-    //       }
-    //   }
-    var questStr = Object.keys(questObj);
-    var questAns = questObj[questStr];
+    var objandind = questionSelector(1);
+    var questObj = objandind[0]
+    var index = objandind[1]
+    var move = moveSelector()
+    if(index === 10){
+      var questStr = Object.keys(questObj)+move;
+    }
+    else{
+      var questStr = Object.keys(questObj);
+    }
+    var questAns = answerExtractor(data, questObj[questStr], index, move)
     $('#questionWindow').text(questStr);
     $('#answerSubmit').on('click', function(e){
       if($('#answerInput').val().toLowerCase()==questAns){
@@ -100,7 +138,6 @@ var quizMaster = function(data, questionNumber, corrects){
       else{
         console.log('wrong')
         console.log(questAns)
-        console.log(data[questAns])
         i++;
         if(i==6){
           $('#questionTracker').text('Question: 5/5')
