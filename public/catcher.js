@@ -68,7 +68,6 @@ var quizMaster = function(data, questionNumber, corrects){
   if(i <= 5){
     $('#questionTracker').text('Question: '+i+'/5')
     var questObj = questionSelector(1);
-    debugger;
     // if(questObj === {"Can this pokemon learn ":"?"}){
     //   debugger;
     //   var move = moveSelector()
